@@ -16,6 +16,10 @@ const DAY_LABELS = {
 // ─── Init ─────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", () => {
   renderTeacherGrid();
+  document.getElementById("daySelect").addEventListener("change", () => {
+    document.getElementById("periodSelect").value = "";
+    updatePeriodOptions();
+  });
 });
 
 // ─── Render teacher selection grid ────────────────────
@@ -57,9 +61,44 @@ function selectTeacher(idx) {
   document.getElementById("resultsSection").classList.add("hidden");
   document.getElementById("absentInfo").innerHTML = "";
 
-  // Reset selects
+  // Reset selects and reset period options to full list
   document.getElementById("daySelect").value = "";
-  document.getElementById("periodSelect").value = "";
+  resetPeriodOptions();
+}
+
+// ─── Reset period dropdown to default (all 8 periods) ─
+function resetPeriodOptions() {
+  const sel = document.getElementById("periodSelect");
+  sel.innerHTML = `<option value="">Choose period…</option>`;
+  for (let p = 1; p <= 8; p++) {
+    sel.innerHTML += `<option value="${p}">Period ${p}</option>`;
+  }
+}
+
+// ─── Update period dropdown based on teacher + day ────
+function updatePeriodOptions() {
+  const sel = document.getElementById("periodSelect");
+  const day = document.getElementById("daySelect").value;
+
+  if (!day || selectedTeacher === null) {
+    resetPeriodOptions();
+    return;
+  }
+
+  const schedule = TEACHERS[selectedTeacher].schedule[day] || [];
+  sel.innerHTML = `<option value="">Choose period…</option>`;
+
+  let hasAny = false;
+  schedule.forEach((slot, idx) => {
+    if (slot) {  // only periods with an actual class
+      hasAny = true;
+      sel.innerHTML += `<option value="${idx + 1}">Period ${idx + 1} — ${slot.class} (${slot.subject})</option>`;
+    }
+  });
+
+  if (!hasAny) {
+    sel.innerHTML = `<option value="">No classes on this day</option>`;
+  }
 }
 
 // ─── View absent teacher's full timetable ─────────────

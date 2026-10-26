@@ -308,6 +308,8 @@ body {
 .card.hidden {
   display: none;
 }
+/* Global utility */
+.hidden { display: none !important; }
 .step-badge {
   display: inline-block;
   font-size: 11px;

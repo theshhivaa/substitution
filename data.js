@@ -603,13 +603,13 @@ const TEACHERS = [
       ],
       Fri: [
         { class: "6E", subject: "MAL" },
-        { class: "6E", subject: "BT" },
         null,
         { class: "6A", subject: "BT" },
         { class: "5C", subject: "BT" },
         { class: "5B", subject: "BT" },
         { class: "6ACD", subject: "AT" },
-        { class: "6B", subject: "BT" }
+        { class: "6B", subject: "BT" },
+        null
       ]
     }
   },
@@ -1361,27 +1361,30 @@ const TEACHERS = [
 
 ];
 
-// ── Fix: Nigila Mon from PDF text (table extraction had empty Mon row)
-// PDF: 55CC 77CC 77AA 77BB 77EE 55BB = 5C BT, 7C BT, 7A BT, 7B BT, 7E BT, 5B SS (P1-P6), 5D SS (P7)
+// ── Fix: Nigila Mon from PDF (Page 1, Table 3)
+// PDF: P1=5C/SS, P2=7C/BT, P3=7A/BT, P4=null, P5=7B/BT, P6=7E/BT, P7=5B/SS
 TEACHERS.find(t => t.name === "Nigila").schedule.Mon = [
   { class: "5C", subject: "SS" },
   { class: "7C", subject: "BT" },
   { class: "7A", subject: "BT" },
+  null,
   { class: "7B", subject: "BT" },
   { class: "7E", subject: "BT" },
   { class: "5B", subject: "SS" },
-  null, null
+  null
 ];
 
-// Fix: Jaya Mon from PDF text
-// PDF: 55DD 77DDEE 77CC 55AA,CC,EE 55EE → MAL AT AT AT BT → P1=5D,P2=7DE,P3=7C,P4=5ACE,P5=5E
+// Fix: Jaya Mon from PDF (Page 1, Table 4)
+// PDF: P1=5D/MAL, P2=7DE/AT, P3=null, P4=7C/AT, P5=5ACE/AT, P6=null, P7=5E/BT
 TEACHERS.find(t => t.name === "Jaya").schedule.Mon = [
   { class: "5D", subject: "MAL" },
   { class: "7DE", subject: "AT" },
+  null,
   { class: "7C", subject: "AT" },
   { class: "5ACE", subject: "AT" },
+  null,
   { class: "5E", subject: "BT" },
-  null, null, null
+  null
 ];
 
 // Fix: Sneha Mon from PDF text

@@ -1035,65 +1035,12 @@ const TEACHERS = [
   },
 
   // ══════════════════════════════════════════════════
-  // PAGE 3 — TABLE 6: SURYA (Art / PE)  — UP schedule
+  // PAGE 3 — TABLE 6: SURYA (Art / PE)
   // ══════════════════════════════════════════════════
   {
     name: "Surya",
     subject: "Art/PE",
     schedule: {
-      Mon: [
-        null,
-        null,
-        null,
-        null,
-        { class: "5ACE", subject: "ART" },
-        null,
-        null,
-        null
-      ],
-      Tue: [
-        null,
-        null,
-        null,
-        { class: "5ACE", subject: "ART" },
-        null,
-        { class: "5B", subject: "ART" },
-        null,
-        null
-      ],
-      Wed: [
-        null,
-        { class: "5ACE", subject: "ART" },
-        { class: "5B",   subject: "ART" },
-        null,
-        null,
-        null,
-        { class: "7C",   subject: "ART" },
-        null
-      ],
-      Thu: [
-        null,
-        null,
-        null,
-        { class: "5B", subject: "ART" },
-        null,
-        null,
-        null,
-        null
-      ],
-      Fri: [
-        null,
-        null,
-        { class: "5B",   subject: "ART" },
-        null,
-        { class: "5ACE", subject: "ART" },
-        null,
-        null,
-        null
-      ]
-    },
-    // LP (Lower Primary) schedule
-    lpSchedule: {
       Mon: [
         null,
         { class: "2A/B",   subject: "Art/PE" },
@@ -1208,65 +1155,12 @@ const TEACHERS = [
   },
 
   // ══════════════════════════════════════════════════
-  // PAGE 4 — TABLE 2: KCM (PE)  — UP schedule
+  // PAGE 4 — TABLE 2: KCM (PE)
   // ══════════════════════════════════════════════════
   {
     name: "KCM",
     subject: "PE",
     schedule: {
-      Mon: [
-        { class: "6E",   subject: "PE" },
-        null,
-        null,
-        { class: "7C",   subject: "PE" },
-        { class: "5ACE", subject: "PE" },
-        { class: "6ACD", subject: "PE" },
-        null,
-        null
-      ],
-      Tue: [
-        { class: "6E",   subject: "PE" },
-        { class: "7C",   subject: "PE" },
-        { class: "6ACD", subject: "PE" },
-        { class: "5ACE", subject: "PE" },
-        null,
-        null,
-        null,
-        null
-      ],
-      Wed: [
-        { class: "6E",   subject: "PE" },
-        { class: "5ACE", subject: "PE" },
-        null,
-        null,
-        { class: "7C",   subject: "PE" },
-        null,
-        { class: "6ACD", subject: "PE" },
-        null
-      ],
-      Thu: [
-        { class: "6E",   subject: "PE" },
-        null,
-        null,
-        null,
-        null,
-        null,
-        { class: "7C",   subject: "PE" },
-        null
-      ],
-      Fri: [
-        null,
-        null,
-        null,
-        null,
-        { class: "5ACE", subject: "PE" },
-        { class: "6ACD", subject: "PE" },
-        null,
-        null
-      ]
-    },
-    // LP (Lower Primary) schedule
-    lpSchedule: {
       Mon: [
         { class: "6E",   subject: "PE" },
         null,
@@ -1519,24 +1413,14 @@ TEACHERS.find(t => t.name === "Sheeba").schedule.Mon = [
   null
 ];
 
-// Helper: count non-null, non-LIB periods for a teacher on a given day (UP + LP)
+// Helper: count non-null, non-LIB periods for a teacher on a given day
 function countPeriodsOnDay(teacher, day) {
-  const upSlots = teacher.schedule[day] || [];
-  const lpSlots = teacher.lpSchedule ? (teacher.lpSchedule[day] || []) : [];
-  let count = 0;
-  for (let i = 0; i < 8; i++) {
-    const upBusy = upSlots[i] && upSlots[i].subject !== "LIB";
-    const lpBusy = lpSlots[i] && lpSlots[i].subject !== "LIB";
-    if (upBusy || lpBusy) count++;
-  }
-  return count;
+  const slots = teacher.schedule[day] || [];
+  return slots.filter(s => s !== null && s.subject !== "LIB").length;
 }
 
-// Helper: check if teacher is free at a given period on a day (must be free in BOTH UP and LP)
+// Helper: check if teacher is free at a given period on a day
 function isFree(teacher, day, periodIndex) {
-  const upSlots = teacher.schedule[day] || [];
-  const upFree = !upSlots[periodIndex];
-  if (!teacher.lpSchedule) return upFree;
-  const lpSlots = teacher.lpSchedule[day] || [];
-  return upFree && !lpSlots[periodIndex];
+  const slots = teacher.schedule[day] || [];
+  return slots[periodIndex] === null;
 }

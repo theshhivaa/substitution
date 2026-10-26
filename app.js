@@ -271,56 +271,42 @@ function viewTimetable(teacherIdx, highlightDay, highlightPeriodIdx) {
   const t = TEACHERS[teacherIdx];
   const days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
 
-  function buildTable(schedule, label, badgeColor) {
-    let html = `
-      <div class="tt-section-label" style="background:${badgeColor}">
-        ${label}
-      </div>
-      <table class="tt-table">
-        <thead>
-          <tr>
-            <th>Day</th>
-            ${[1,2,3,4,5,6,7,8].map(p => `<th>P${p}</th>`).join("")}
-          </tr>
-        </thead>
-        <tbody>`;
+  let html = `<table class="tt-table">
+    <thead>
+      <tr>
+        <th>Day</th>
+        ${[1,2,3,4,5,6,7,8].map(p => `<th>P${p}</th>`).join("")}
+      </tr>
+    </thead>
+    <tbody>`;
 
-    days.forEach((day) => {
-      const rowClass = day === highlightDay ? ' class="tt-highlight"' : '';
-      html += `<tr${rowClass}>
-        <td style="font-weight:600; color: var(--text-primary); white-space:nowrap;">${DAY_LABELS[day].slice(0,3)}</td>`;
-      const slots = schedule[day] || [];
-      for (let p = 0; p < 8; p++) {
-        const slot = slots[p];
-        const isHighlight = day === highlightDay && p === highlightPeriodIdx;
-        const cellStyle = isHighlight
-          ? 'style="background:rgba(52,211,153,0.1); border:1px solid rgba(52,211,153,0.35);"'
-          : '';
-        if (slot) {
-          html += `<td ${cellStyle}>
-            <div class="tt-cell">
-              <span class="tt-class">${slot.class}</span>
-              <span class="tt-subj">${slot.subject}</span>
-            </div>
-          </td>`;
-        } else {
-          const freeStyle = isHighlight ? `${cellStyle}` : 'style="color: var(--text-dim);"';
-          html += `<td ${freeStyle}>${isHighlight ? '✓ Free' : '—'}</td>`;
-        }
+  days.forEach((day) => {
+    const rowClass = day === highlightDay ? ' class="tt-highlight"' : '';
+    html += `<tr${rowClass}>
+      <td style="font-weight:600; color: var(--text-primary); white-space:nowrap;">${DAY_LABELS[day].slice(0,3)}</td>`;
+    const slots = t.schedule[day] || [];
+    for (let p = 0; p < 8; p++) {
+      const slot = slots[p];
+      const isHighlight = day === highlightDay && p === highlightPeriodIdx;
+      const cellStyle = isHighlight
+        ? 'style="background:rgba(52,211,153,0.1); border:1px solid rgba(52,211,153,0.35);"'
+        : '';
+      if (slot) {
+        html += `<td ${cellStyle}>
+          <div class="tt-cell">
+            <span class="tt-class">${slot.class}</span>
+            <span class="tt-subj">${slot.subject}</span>
+          </div>
+        </td>`;
+      } else {
+        const freeStyle = isHighlight ? `${cellStyle}` : 'style="color: var(--text-dim);"';
+        html += `<td ${freeStyle}>${isHighlight ? '✓ Free' : '—'}</td>`;
       }
-      html += `</tr>`;
-    });
+    }
+    html += `</tr>`;
+  });
 
-    html += `</tbody></table>`;
-    return html;
-  }
-
-  let html = buildTable(t.schedule, t.lpSchedule ? "UP (Upper Primary)" : "Timetable", "rgba(79,142,247,0.15)");
-
-  if (t.lpSchedule) {
-    html += `<div style="margin-top:16px;"></div>`;
-    html += buildTable(t.lpSchedule, "LP (Lower Primary)", "rgba(167,139,250,0.15)");
-  }
+  html += `</tbody></table>`;
 
   document.getElementById("modalTitle").textContent = `${t.name}'s Timetable (${t.subject})`;
   document.getElementById("modalContent").innerHTML = html;

@@ -407,38 +407,31 @@ function clearLog() {
   document.getElementById("logSection").classList.add("hidden");
 }
 
-// ─── Build table-formatted share message from log ─────
+// ─── Build share message from log ─────────────────────
 function buildShareText() {
   const today = new Date().toLocaleDateString("en-IN", {
     weekday: "long", year: "numeric", month: "long", day: "numeric"
   });
 
-  // Helper: pad a string to a fixed width
+  // Table section
   const pad = (str, len) => {
     const s = str ?? "";
     return s.length >= len ? s.slice(0, len) : s + " ".repeat(len - s.length);
   };
-
-  // Build table rows
   const rows = assignmentLog.map((entry, i) => {
     const classStr = entry.absentSlot
       ? `${entry.absentSlot.class} (${entry.absentSlot.subject})`
       : "—";
     return {
-      no:      String(i + 1),
-      sub:     entry.sub.name,
-      absent:  entry.absent.name,
-      day:     DAY_LABELS[entry.day],
-      period:  `P${entry.period}`,
-      cls:     classStr
+      no:     String(i + 1),
+      sub:    entry.sub.name,
+      absent: entry.absent.name,
+      day:    DAY_LABELS[entry.day],
+      period: `P${entry.period}`,
+      cls:    classStr
     };
   });
-
-  // Column widths (dynamic — fit to longest value)
-  const col = (key, header) => Math.max(
-    header.length,
-    ...rows.map(r => (r[key] ?? "").length)
-  );
+  const col = (key, header) => Math.max(header.length, ...rows.map(r => (r[key] ?? "").length));
   const w = {
     no:     col("no",     "#"),
     sub:    col("sub",    "Substitute Teacher"),
@@ -447,22 +440,29 @@ function buildShareText() {
     period: col("period", "Period"),
     cls:    col("cls",    "Class")
   };
-
-  const sep  = `+${"-".repeat(w.no+2)}+${"-".repeat(w.sub+2)}+${"-".repeat(w.absent+2)}+${"-".repeat(w.day+2)}+${"-".repeat(w.period+2)}+${"-".repeat(w.cls+2)}+`;
+  const sep    = `+${"-".repeat(w.no+2)}+${"-".repeat(w.sub+2)}+${"-".repeat(w.absent+2)}+${"-".repeat(w.day+2)}+${"-".repeat(w.period+2)}+${"-".repeat(w.cls+2)}+`;
   const header = `| ${pad("#", w.no)} | ${pad("Substitute Teacher", w.sub)} | ${pad("Absent Teacher", w.absent)} | ${pad("Day", w.day)} | ${pad("Period", w.period)} | ${pad("Class", w.cls)} |`;
-
   let table = sep + "\n" + header + "\n" + sep + "\n";
   rows.forEach(r => {
     table += `| ${pad(r.no, w.no)} | ${pad(r.sub, w.sub)} | ${pad(r.absent, w.absent)} | ${pad(r.day, w.day)} | ${pad(r.period, w.period)} | ${pad(r.cls, w.cls)} |\n`;
   });
   table += sep;
 
-  // Final message (triple backticks = monospace/code block in WhatsApp)
+  // Plain text section (below table)
+  let plain = "";
+  assignmentLog.forEach((entry, i) => {
+    const classStr = entry.absentSlot
+      ? `${entry.absentSlot.class} (${entry.absentSlot.subject})`
+      : "—";
+    plain += `${i + 1}. *${entry.sub.name}* will substitute for *${entry.absent.name}* — ${DAY_LABELS[entry.day]}, Period ${entry.period}, Class: ${classStr}\n`;
+  });
+
   let msg = `📋 *Substitution Assignment Log*\n`;
   msg += `🏫 *Govt. Ganapath UP School*\n`;
   msg += `📅 ${today}\n\n`;
   msg += `\`\`\`\n${table}\n\`\`\`\n\n`;
-  msg += `✅ Total assignments: ${assignmentLog.length}`;
+  msg += plain;
+  msg += `\n✅ Total assignments: ${assignmentLog.length}`;
   return msg;
 }
 

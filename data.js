@@ -1193,7 +1193,7 @@ const TEACHERS = [
       ],
       Thu: [
         { class: "6E",   subject: "PE" },
-        null,
+        { class: "3C",   subject: "PE" },
         { class: "4B",   subject: "PE" },
         null,
         null,

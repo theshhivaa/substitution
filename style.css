@@ -896,6 +896,26 @@ body {
 }
 .tt-highlight td { background: rgba(251,191,36,0.06) !important; }
 
+/* LP / UP section label */
+.tt-section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+  display: inline-block;
+}
+
+/* LP table: purple-tinted header */
+.tt-lp .tt-table th {
+  background: rgba(167,139,250,0.12);
+  color: var(--accent2);
+  border-color: rgba(167,139,250,0.18);
+}
+
 /* Confirm modal */
 .confirm-box {
   max-width: 420px;

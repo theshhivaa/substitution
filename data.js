@@ -1035,7 +1035,7 @@ const TEACHERS = [
   },
 
   // ══════════════════════════════════════════════════
-  // PAGE 3 — TABLE 6: SURYA (Art / PE)
+  // PAGE 3 — TABLE 6: SURYA (Art / PE)  — UP schedule
   // ══════════════════════════════════════════════════
   {
     name: "Surya",
@@ -1064,11 +1064,11 @@ const TEACHERS = [
       Wed: [
         null,
         { class: "5ACE", subject: "ART" },
-        { class: "5B", subject: "ART" },
+        { class: "5B",   subject: "ART" },
         null,
         null,
         null,
-        { class: "7C", subject: "ART" },
+        { class: "7C",   subject: "ART" },
         null
       ],
       Thu: [
@@ -1084,11 +1084,64 @@ const TEACHERS = [
       Fri: [
         null,
         null,
-        { class: "5B", subject: "ART" },
+        { class: "5B",   subject: "ART" },
         null,
         { class: "5ACE", subject: "ART" },
         null,
         null,
+        null
+      ]
+    },
+    // LP (Lower Primary) schedule
+    lpSchedule: {
+      Mon: [
+        null,
+        { class: "2A/B",   subject: "Art/PE" },
+        { class: "1A,C",   subject: "Art/PE" },
+        null,
+        { class: "5A,C,E", subject: "Art/PE" },
+        { class: "2C",     subject: "Art/PE" },
+        { class: "1B",     subject: "Art/PE" },
+        null
+      ],
+      Tue: [
+        null,
+        null,
+        { class: "1B",     subject: "Art/PE" },
+        { class: "5ACE",   subject: "Art/PE" },
+        { class: "2A/B",   subject: "Art/PE" },
+        { class: "5B",     subject: "Art/PE" },
+        { class: "1A,C",   subject: "Art/PE" },
+        null
+      ],
+      Wed: [
+        null,
+        { class: "5ACE",   subject: "Art/PE" },
+        { class: "5B",     subject: "Art/PE" },
+        { class: "1B",     subject: "Art/PE" },
+        { class: "2C",     subject: "Art/PE" },
+        null,
+        null,
+        null
+      ],
+      Thu: [
+        null,
+        { class: "1A,C",   subject: "Art/PE" },
+        { class: "2A/B",   subject: "Art/PE" },
+        { class: "5B",     subject: "Art/PE" },
+        { class: "2C",     subject: "Art/PE" },
+        { class: "1B",     subject: "Art/PE" },
+        null,
+        null
+      ],
+      Fri: [
+        null,
+        { class: "2C",     subject: "Art/PE" },
+        { class: "5B",     subject: "Art/PE" },
+        { class: "2A/B",   subject: "Art/PE" },
+        { class: "5ACE",   subject: "Art/PE" },
+        null,
+        { class: "1A,C",   subject: "Art/PE" },
         null
       ]
     }
@@ -1155,25 +1208,25 @@ const TEACHERS = [
   },
 
   // ══════════════════════════════════════════════════
-  // PAGE 4 — TABLE 2: KCM (PE)
+  // PAGE 4 — TABLE 2: KCM (PE)  — UP schedule
   // ══════════════════════════════════════════════════
   {
     name: "KCM",
     subject: "PE",
     schedule: {
       Mon: [
-        { class: "6E", subject: "PE" },
+        { class: "6E",   subject: "PE" },
         null,
         null,
-        { class: "7C", subject: "PE" },
+        { class: "7C",   subject: "PE" },
         { class: "5ACE", subject: "PE" },
         { class: "6ACD", subject: "PE" },
         null,
         null
       ],
       Tue: [
-        { class: "6E", subject: "PE" },
-        { class: "7C", subject: "PE" },
+        { class: "6E",   subject: "PE" },
+        { class: "7C",   subject: "PE" },
         { class: "6ACD", subject: "PE" },
         { class: "5ACE", subject: "PE" },
         null,
@@ -1182,23 +1235,23 @@ const TEACHERS = [
         null
       ],
       Wed: [
-        { class: "6E", subject: "PE" },
+        { class: "6E",   subject: "PE" },
         { class: "5ACE", subject: "PE" },
         null,
         null,
-        { class: "7C", subject: "PE" },
+        { class: "7C",   subject: "PE" },
         null,
         { class: "6ACD", subject: "PE" },
         null
       ],
       Thu: [
-        { class: "6E", subject: "PE" },
+        { class: "6E",   subject: "PE" },
         null,
         null,
         null,
         null,
         null,
-        { class: "7C", subject: "PE" },
+        { class: "7C",   subject: "PE" },
         null
       ],
       Fri: [
@@ -1209,6 +1262,59 @@ const TEACHERS = [
         { class: "5ACE", subject: "PE" },
         { class: "6ACD", subject: "PE" },
         null,
+        null
+      ]
+    },
+    // LP (Lower Primary) schedule
+    lpSchedule: {
+      Mon: [
+        { class: "6E",   subject: "PE" },
+        null,
+        { class: "1AC",  subject: "PE" },
+        { class: "7C",   subject: "PE" },
+        { class: "5AC",  subject: "PE" },
+        { class: "6AD",  subject: "PE" },
+        { class: "4C",   subject: "PE" },
+        null
+      ],
+      Tue: [
+        { class: "6E",   subject: "PE" },
+        { class: "7C",   subject: "PE" },
+        { class: "6AD",  subject: "PE" },
+        { class: "5AC",  subject: "PE" },
+        null,
+        { class: "4B",   subject: "PE" },
+        null,
+        null
+      ],
+      Wed: [
+        { class: "6E",   subject: "PE" },
+        { class: "5AC",  subject: "PE" },
+        { class: "4B",   subject: "PE" },
+        { class: "4C",   subject: "PE" },
+        { class: "7C",   subject: "PE" },
+        { class: "3AC",  subject: "PE" },
+        { class: "6AD",  subject: "PE" },
+        null
+      ],
+      Thu: [
+        { class: "6E",   subject: "PE" },
+        null,
+        { class: "4B",   subject: "PE" },
+        null,
+        null,
+        { class: "4C",   subject: "PE" },
+        { class: "7C",   subject: "PE" },
+        null
+      ],
+      Fri: [
+        null,
+        { class: "2C",   subject: "PE" },
+        { class: "4C",   subject: "PE" },
+        { class: "2AB",  subject: "PE" },
+        { class: "5AC",  subject: "PE" },
+        { class: "6AD",  subject: "PE" },
+        { class: "4B",   subject: "PE" },
         null
       ]
     }
@@ -1413,14 +1519,24 @@ TEACHERS.find(t => t.name === "Sheeba").schedule.Mon = [
   null
 ];
 
-// Helper: count non-null, non-LIB periods for a teacher on a given day
+// Helper: count non-null, non-LIB periods for a teacher on a given day (UP + LP)
 function countPeriodsOnDay(teacher, day) {
-  const slots = teacher.schedule[day] || [];
-  return slots.filter(s => s !== null && s.subject !== "LIB").length;
+  const upSlots = teacher.schedule[day] || [];
+  const lpSlots = teacher.lpSchedule ? (teacher.lpSchedule[day] || []) : [];
+  let count = 0;
+  for (let i = 0; i < 8; i++) {
+    const upBusy = upSlots[i] && upSlots[i].subject !== "LIB";
+    const lpBusy = lpSlots[i] && lpSlots[i].subject !== "LIB";
+    if (upBusy || lpBusy) count++;
+  }
+  return count;
 }
 
-// Helper: check if teacher is free at a given period on a day
+// Helper: check if teacher is free at a given period on a day (must be free in BOTH UP and LP)
 function isFree(teacher, day, periodIndex) {
-  const slots = teacher.schedule[day] || [];
-  return slots[periodIndex] === null;
+  const upSlots = teacher.schedule[day] || [];
+  const upFree = !upSlots[periodIndex];
+  if (!teacher.lpSchedule) return upFree;
+  const lpSlots = teacher.lpSchedule[day] || [];
+  return upFree && !lpSlots[periodIndex];
 }

@@ -542,6 +542,106 @@ body {
 }
 .btn-clear:hover { background: rgba(248,113,113,0.08); }
 
+/* Log action row */
+.log-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+.log-actions .btn-clear { margin-top: 0; }
+
+/* Share Log button */
+.btn-share-log {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: linear-gradient(135deg, rgba(37,211,102,0.15), rgba(79,142,247,0.12));
+  border: 1px solid rgba(37,211,102,0.35);
+  border-radius: var(--radius-sm);
+  color: #25d366;
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 7px 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.01em;
+}
+.btn-share-log:hover {
+  background: linear-gradient(135deg, rgba(37,211,102,0.25), rgba(79,142,247,0.18));
+  box-shadow: 0 0 14px rgba(37,211,102,0.25);
+}
+
+/* Share modal */
+.share-modal-box {
+  max-width: 460px;
+  width: 100%;
+}
+.share-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 18px 0 14px;
+}
+.share-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 18px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  border: none;
+  width: 100%;
+}
+.share-wa {
+  background: rgba(37,211,102,0.12);
+  border: 1px solid rgba(37,211,102,0.3);
+  color: #25d366;
+}
+.share-wa:hover { background: rgba(37,211,102,0.2); box-shadow: 0 0 16px rgba(37,211,102,0.2); }
+.share-tg {
+  background: rgba(40,167,220,0.12);
+  border: 1px solid rgba(40,167,220,0.3);
+  color: #29a7dc;
+}
+.share-tg:hover { background: rgba(40,167,220,0.2); box-shadow: 0 0 16px rgba(40,167,220,0.2); }
+.share-copy {
+  background: rgba(79,142,247,0.1);
+  border: 1px solid rgba(79,142,247,0.25);
+  color: var(--accent);
+}
+.share-copy:hover { background: rgba(79,142,247,0.18); box-shadow: 0 0 16px rgba(79,142,247,0.2); }
+.share-preview-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+.share-preview {
+  width: 100%;
+  height: 160px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-family: var(--font);
+  font-size: 12px;
+  line-height: 1.6;
+  padding: 12px 14px;
+  resize: none;
+  outline: none;
+}
+.share-preview:focus { border-color: var(--accent); }
+
 /* ===========================
    MODAL
    =========================== */
